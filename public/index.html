@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket Test Client</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js" integrity="sha512-2rUSTSAeOO02jF6eBqENNqPs1EohenJ5j+1dgDPdXSLz9nOlrr8DJk4zW/lDy8rjhGCSonW3Gx812XJQIKZKJQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+  This is for socket test, 
+  <br> Please check browser console for log
+</body>
+<script>
+  var socket = io("ws://localhost:3000");
+
+  socket.on('message', function(msg) {
+    console.log(msg);
+  });
+
+  socket.emit('init', "test");
+  socket.emit("User Message", {reciever : "all", message:"Hii"});
+  socket.emit("join group", "Test Group");
+  socket.emit("Group Message", {name: "Test Group", message:"Do some task"})
+
+</script>
+</html>
